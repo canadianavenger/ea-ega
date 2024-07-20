@@ -6,7 +6,7 @@ This repository is a companion to my blog post about the reverse engineering of 
 
 ## The Code
 
-In this repo there are two C programs, each is a standalone utility for converting between the EA-PAK format and the Windows BMP format. The code is written to be portable, and should be able to be compiled for Windows, Linux, or Mac. The code is offered without warranty under the MIT License. Use it as you will personally or commercially, just give credit if you do.
+In this repo there are two C programs, each is a standalone utility for converting between the EA-EGA format and the Windows BMP format. The code is written to be portable, and should be able to be compiled for Windows, Linux, or Mac. The code is offered without warranty under the MIT License. Use it as you will personally or commercially, just give credit if you do.
 
 - `ega2bmp.c` converts the given `.EGA` image into a Windows BMP format image
 - `bmp2ega.c` converts the given Windows BMP format image into a `.EGA` image 
@@ -22,7 +22,7 @@ typedef struct {
 } ega_file_t;
 ```
 
-The EGA file format uses a code-based RLE compression scheme. The most signifcant bit of the code indicates if the encoded length represents a run, or a uncompressed string. The RLE encoding does not span scanlines, so any length encoding will terminate at teh end of a scanline, and start fresh on the next scanline.
+The EGA file format uses a code-based RLE compression scheme. The most signifcant bit of the code indicates if the encoded length represents a run, or a uncompressed string. The RLE encoding does not span scanlines, so any length encoding will terminate at the end of a scanline, and start fresh on the next scanline.
 
 ```
 code = get_byte()
