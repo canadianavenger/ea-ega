@@ -139,6 +139,7 @@ int main(int argc, char *argv[]) {
         if(tc >= 128) {
             tc = (tc & 0x7f) + 3;
             uint8_t tv = src.data[src.pos++];
+printf("%d [%02x]\n", tc, tv);
             for(int i = 0; i< tc; i++) {
                 *dst++ = (tv >> 4) & 0x0f;
                 *dst++ = tv & 0x0f;
@@ -146,12 +147,15 @@ int main(int argc, char *argv[]) {
             }
         } else {
             tc += 1;
+printf("%d [", tc);
             for(int i = 0; i< tc; i++) {
                 uint8_t tv = src.data[src.pos++];
+printf(" %02x", tv);
                 *dst++ = (tv >> 4) & 0x0f;
                 *dst++ = tv & 0x0f;
                 x += 2;
             }
+printf(" ]\n");
         }
         if(x >= width) {
             x = 0;
